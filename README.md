@@ -3,7 +3,7 @@ An end-to-end NLP sentiment analysis system trained on **5,68,454 Amazon food pr
 
 ## 🎯 Model Performance 
 | Metric | Score |
-|----------------|
+|--------|--------|
 |Accuracy| 91.2% |
 |True Positives | 81,069|
 |False Negatives | 14,844|
