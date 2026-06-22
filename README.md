@@ -19,7 +19,7 @@ An end-to-end NLP sentiment analysis system trained on **5,68,454 Amazon food pr
 
 ## 🛠 Tech Stack
 | Category | Tools |
-|------------------|
+|-----------|-------|
 | Language | Python|
 | Data | Pandas,Numpy|
 | NLP | NLTK, TF-IDF|
