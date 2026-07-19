@@ -1,0 +1,234 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #1565C0, #42A5F5);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 { font-size: 2rem; }
+header p  { opacity: 0.85; margin-top: 8px; }
+
+/* Stats Cards */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.big-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1565C0;
+    margin: 10px 0;
+}
+
+.card span {
+    color: #999;
+    font-size: 0.85rem;
+}
+
+/* Sections */
+.predict-section,
+.batch-section,
+.model-info {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 20px auto;
+    max-width: 800px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+    color: #1565C0;
+}
+
+textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: border 0.3s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #1565C0;
+}
+
+button {
+    margin-top: 12px;
+    padding: 12px 28px;
+    background: #1565C0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover { background: #0D47A1; }
+
+/* Result */
+.result {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f8f9fa;
+}
+
+.hidden { display: none; }
+
+#sentiment-badge {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.positive-badge { color: #2E7D32; }
+.negative-badge { color: #C62828; }
+
+/* Confidence Bar */
+.confidence-bar p {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.bar-bg {
+    background: #e0e0e0;
+    border-radius: 20px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #1565C0, #42A5F5);
+    transition: width 0.8s ease;
+}
+
+/* Batch Results */
+.batch-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #f8f9fa;
+    border-left: 4px solid #1565C0;
+}
+
+.batch-item.positive { border-color: #2E7D32; }
+.batch-item.negative { border-color: #C62828; }
+
+.batch-text {
+    font-size: 0.9rem;
+    color: #444;
+    flex: 1;
+    margin-right: 16px;
+}
+
+.batch-badge {
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.positive .batch-badge {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.negative .batch-badge {
+    background: #FFEBEE;
+    color: #C62828;
+}
+
+/* Model Info */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.info-grid div {
+    background: #f8f9fa;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.info-grid h4 {
+    color: #1565C0;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.info-grid p {
+    color: #444;
+    font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 24px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #1565C0;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}

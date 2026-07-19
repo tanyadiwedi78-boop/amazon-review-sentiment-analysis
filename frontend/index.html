@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Sentiment Analyzer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>🛒 Amazon Review Sentiment Analyzer</h1>
+    <p>Powered by TF-IDF + Logistic Regression</p>
+</header>
+
+<!-- Stats Cards -->
+<section class="stats">
+    <div class="card">
+        <h3>Model Accuracy</h3>
+        <p class="big-number">96.7%</p>
+        <span>ROC-AUC Score</span>
+    </div>
+    <div class="card">
+        <h3>Avg Precision</h3>
+        <p class="big-number">99.3%</p>
+        <span>PR-AUC Score</span>
+    </div>
+    <div class="card">
+        <h3>Reviews Trained</h3>
+        <p class="big-number">568K+</p>
+        <span>Amazon Food Reviews</span>
+    </div>
+    <div class="card">
+        <h3>Categories</h3>
+        <p class="big-number">2</p>
+        <span>Positive / Negative</span>
+    </div>
+</section>
+
+<!-- Single Prediction -->
+<section class="predict-section">
+    <h2>🔍 Analyze Single Review</h2>
+    <textarea 
+        id="reviewText" 
+        placeholder="Paste your Amazon review here..."
+        rows="5">
+    </textarea>
+    <button onclick="predictSingle()">
+        Analyze Sentiment
+    </button>
+
+    <!-- Result -->
+    <div id="result" class="result hidden">
+        <div id="sentiment-badge"></div>
+        <div class="confidence-bar">
+            <p>Confidence: <span id="conf-text"></span></p>
+            <div class="bar-bg">
+                <div id="conf-bar" class="bar-fill"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Batch Prediction -->
+<section class="batch-section">
+    <h2>📋 Batch Analysis</h2>
+    <p>Enter multiple reviews (one per line)</p>
+    <textarea 
+        id="batchText"
+        placeholder="Review 1&#10;Review 2&#10;Review 3..."
+        rows="6">
+    </textarea>
+    <button onclick="predictBatch()">
+        Analyze All Reviews
+    </button>
+
+    <div id="batch-results"></div>
+</section>
+
+<!-- Model Info -->
+<section class="model-info">
+    <h2>📊 About This Model</h2>
+    <div class="info-grid">
+        <div>
+            <h4>Algorithm</h4>
+            <p>Logistic Regression</p>
+        </div>
+        <div>
+            <h4>Features</h4>
+            <p>TF-IDF (10,000 features)</p>
+        </div>
+        <div>
+            <h4>Dataset</h4>
+            <p>Amazon Fine Food Reviews</p>
+        </div>
+        <div>
+            <h4>NLP Pipeline</h4>
+            <p>NLTK + Lemmatization</p>
+        </div>
+    </div>
+</section>
+
+
+
+<script src="js/script.js"></script>
+</body>
+</html>
