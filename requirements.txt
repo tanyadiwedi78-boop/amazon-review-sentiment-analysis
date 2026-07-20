@@ -11,3 +11,7 @@ matplotlib
 nltk
 fastapi
 uvicorn
+scikit-learn
+joblib
+
+
