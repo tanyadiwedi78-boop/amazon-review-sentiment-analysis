@@ -5,3 +5,4 @@ __pycache__/
 .vscode/
 backend/__pycache__/
 *.pkl
+.env
