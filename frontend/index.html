@@ -10,98 +10,176 @@
 
 <!-- Header -->
 <header>
-    <h1>🛒 Amazon Review Sentiment Analyzer</h1>
-    <p>Powered by TF-IDF + Logistic Regression</p>
+    <div class="header-content">
+        <h1>🛒 Amazon Review Sentiment Analyzer</h1>
+        <p>Powered by ML Model + Groq AI Insights</p>
+    </div>
 </header>
 
-<!-- Stats Cards -->
-<section class="stats">
-    <div class="card">
-        <h3>Model Accuracy</h3>
-        <p class="big-number">96.7%</p>
-        <span>ROC-AUC Score</span>
-    </div>
-    <div class="card">
-        <h3>Avg Precision</h3>
-        <p class="big-number">99.3%</p>
-        <span>PR-AUC Score</span>
-    </div>
-    <div class="card">
-        <h3>Reviews Trained</h3>
-        <p class="big-number">568K+</p>
-        <span>Amazon Food Reviews</span>
-    </div>
-    <div class="card">
-        <h3>Categories</h3>
-        <p class="big-number">2</p>
-        <span>Positive / Negative</span>
+<!-- Stats -->
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-number">96.7%</span>
+            <span class="stat-label">ROC-AUC Score</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">99.3%</span>
+            <span class="stat-label">Avg Precision</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">568K+</span>
+            <span class="stat-label">Reviews Trained</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">~0.3s</span>
+            <span class="stat-label">Inference Time</span>
+        </div>
     </div>
 </section>
 
-<!-- Single Prediction -->
-<section class="predict-section">
-    <h2>🔍 Analyze Single Review</h2>
-    <textarea 
-        id="reviewText" 
-        placeholder="Paste your Amazon review here..."
-        rows="5">
-    </textarea>
-    <button onclick="predictSingle()">
-        Analyze Sentiment
-    </button>
+<!-- Main Analyzer -->
+<section class="analyzer-section">
+    <div class="analyzer-container">
 
-    <!-- Result -->
-    <div id="result" class="result hidden">
-        <div id="sentiment-badge"></div>
-        <div class="confidence-bar">
-            <p>Confidence: <span id="conf-text"></span></p>
-            <div class="bar-bg">
-                <div id="conf-bar" class="bar-fill"></div>
+        <!-- Left — Input -->
+        <div class="input-panel">
+            <h2>🔍 Analyze Review</h2>
+            <p class="subtitle">
+                Paste any product review — 
+                our AI will detect sentiment 
+                and generate insights
+            </p>
+            <textarea
+                id="reviewText"
+                placeholder="e.g. The length of this dress is too short and the material feels very cheap for the price..."
+                rows="7">
+            </textarea>
+            <button
+                id="analyzeBtn"
+                onclick="predictSingle()">
+                Analyze Sentiment
+            </button>
+
+            <!-- Example Reviews -->
+            <div class="examples">
+                <p>Try an example:</p>
+                <div class="example-chips">
+                    <span onclick="fillExample('This coffee tastes absolutely horrible, bitter and undrinkable. Worst purchase ever.')">
+                        ☕ Bad Coffee
+                    </span>
+                    <span onclick="fillExample('Amazing quality dress! Perfect fit, beautiful fabric and fast delivery. Love it!')">
+                        👗 Good Dress
+                    </span>
+                    <span onclick="fillExample('Battery dies in 2 hours, screen is dim and customer service was unhelpful.')">
+                        📱 Bad Electronics
+                    </span>
+                    <span onclick="fillExample('Best chocolate I have ever tasted! Rich flavor, melts perfectly. Will buy again!')">
+                        🍫 Good Food
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right — Result -->
+        <div class="result-panel" id="result-panel">
+
+            <!-- Placeholder -->
+            <div class="placeholder" id="placeholder">
+                <span>🤖</span>
+                <p>Your analysis will appear here</p>
+            </div>
+
+            <!-- Loading -->
+            <div class="loading hidden" id="loading">
+                <div class="spinner"></div>
+                <p>Analyzing review...</p>
+                <small>ML Model + Groq AI</small>
+            </div>
+
+            <!-- Result -->
+            <div class="result-content hidden" id="result-content">
+
+                <!-- Sentiment Badge -->
+                <div class="sentiment-badge" id="sentiment-badge"></div>
+
+                <!-- Confidence -->
+                <div class="confidence-section">
+                    <div class="conf-header">
+                        <span>Confidence</span>
+                        <span id="conf-text" class="conf-value"></span>
+                    </div>
+                    <div class="conf-bar-bg">
+                        <div id="conf-bar" class="conf-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Divider -->
+                <div class="divider"></div>
+
+                <!-- AI Insights -->
+                <div class="ai-section">
+                    <div class="ai-header">
+                        <span class="ai-icon">🤖</span>
+                        <h3>AI Analysis</h3>
+                    </div>
+                    <p class="ai-paragraph" id="ai-paragraph"></p>
+                </div>
+
             </div>
         </div>
     </div>
 </section>
 
-<!-- Batch Prediction -->
+<!-- Batch Analysis -->
 <section class="batch-section">
-    <h2>📋 Batch Analysis</h2>
-    <p>Enter multiple reviews (one per line)</p>
-    <textarea 
-        id="batchText"
-        placeholder="Review 1&#10;Review 2&#10;Review 3..."
-        rows="6">
-    </textarea>
-    <button onclick="predictBatch()">
-        Analyze All Reviews
-    </button>
-
-    <div id="batch-results"></div>
+    <div class="batch-container">
+        <h2>📋 Batch Analysis</h2>
+        <p>Analyze multiple reviews at once (one per line)</p>
+        <textarea
+            id="batchText"
+            placeholder="Review 1&#10;Review 2&#10;Review 3..."
+            rows="5">
+        </textarea>
+        <button onclick="predictBatch()">
+            Analyze All Reviews
+        </button>
+        <div id="batch-results"></div>
+    </div>
 </section>
 
 <!-- Model Info -->
-<section class="model-info">
-    <h2>📊 About This Model</h2>
-    <div class="info-grid">
-        <div>
-            <h4>Algorithm</h4>
-            <p>Logistic Regression</p>
-        </div>
-        <div>
-            <h4>Features</h4>
-            <p>TF-IDF (10,000 features)</p>
-        </div>
-        <div>
-            <h4>Dataset</h4>
-            <p>Amazon Fine Food Reviews</p>
-        </div>
-        <div>
-            <h4>NLP Pipeline</h4>
-            <p>NLTK + Lemmatization</p>
+<section class="model-section">
+    <div class="model-container">
+        <h2>⚙️ Model Architecture</h2>
+        <div class="model-grid">
+            <div class="model-card">
+                <h4>🔤 NLP Pipeline</h4>
+                <p>NLTK tokenization, lemmatization, stopword removal with custom food domain words</p>
+            </div>
+            <div class="model-card">
+                <h4>📊 Feature Extraction</h4>
+                <p>TF-IDF Vectorizer with 10,000 features and bigram support (ngram 1-2)</p>
+            </div>
+            <div class="model-card">
+                <h4>🤖 ML Model</h4>
+                <p>Logistic Regression with balanced class weights, trained on 568K+ Amazon reviews</p>
+            </div>
+            <div class="model-card">
+                <h4>💡 AI Insights</h4>
+                <p>Groq LLaMA3 generates contextual analysis explaining sentiment drivers</p>
+            </div>
         </div>
     </div>
 </section>
 
-
+<!-- Footer -->
+<footer>
+    <p>
+        Built by <strong>Tanya Diwedi</strong> |
+        
+    </p>
+</footer>
 
 <script src="js/script.js"></script>
 </body>
